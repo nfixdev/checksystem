@@ -1,0 +1,31 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "Бот для общения в телеграме",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nfixdev/chatbot.git"
+  },
+  "keywords": [
+    "Bot",
+    "Telegram",
+    "Chat",
+    "NodeJS"
+  ],
+  "author": "Tozhiev Roman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nfixdev/chatbot/issues"
+  },
+  "homepage": "https://github.com/nfixdev/chatbot#readme",
+  "dependencies": {
+    "mysql2": "^3.6.5",
+    "node-telegram-bot-api": "^0.63.0",
+    "nodemon": "^3.0.2"
+  }
+}

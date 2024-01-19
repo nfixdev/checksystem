@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>Система тестирования</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Competetive</a>
+                <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse"
+                    id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="/">Домашняя</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="https://t.me/chatbot_octagon_bot">Перейти
+                                в бота</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search"
+                            placeholder="Теги..." aria-label="Search">
+                        <button class="btn btn-outline-success"
+                            type="submit">Найти</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div id="card-grid" class="container text-center">
+
+        </div>
+        <div id="modals">
+
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <script>
+            const loadJSON = (callback) => {
+                const xObj = new XMLHttpRequest();
+                xObj.overrideMimeType("application/json");
+                xObj.open('GET', './tasks.json', true);
+                xObj.onreadystatechange = () => {
+                    if (xObj.readyState === 4 && xObj.status === 200) {
+                        callback(xObj.responseText);
+                    }
+                };
+                xObj.send(null);
+            }
+            let json = undefined;
+            const cards_grid = document.getElementById("card-grid");
+            const modals = document.getElementById("modals");
+            loadJSON((response)=>{
+                json=JSON.parse(response);
+                let counter=0;
+                for(let task of json){
+                        if(counter%3==0){
+                            cards_grid.innerHTML+=`<div class="row" id="row_${Math.trunc(counter/3)}"></div>`;
+                        }
+                        const current_row = document.getElementById(`row_${Math.trunc(counter/3)}`);
+                        current_row.innerHTML+=`                            
+                        <div class="col" id="col_${counter}">
+                            <div class="card" id="${task.id}" style="width: 18rem;">
+                                <div class="card-title">${task.name}</div>
+                                <div class="card-body">
+                                    <p class="card-text">${task.description}</p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_${task.id}">Полностью...</button>
+                                </div>
+                            </div>	
+                        </div>`;
+                        counter++;
+                        modals.innerHTML+=`
+                        <div class="modal fade" id="modal_${task.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">${task.name}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p1>${task.description}</p1>
+                                    <br>
+                                    <p2>ID: ${task.id}</p2>
+                                    <br>
+                                    <p2>Название: ${task.name}</p2>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="https://t.me/chatbot_octagon_bot">Перейти к сдаче решения...</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    }
+                }
+            );
+            
+
+        </script>
+    </body>
+</html>

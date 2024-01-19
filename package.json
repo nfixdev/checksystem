@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js --ignore *.json"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/nfixdev/chatbot#readme",
   "dependencies": {
+    "express": "^4.18.2",
     "mysql2": "^3.6.5",
     "node-telegram-bot-api": "^0.63.0",
     "nodemon": "^3.0.2"

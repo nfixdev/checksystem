@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "name": "Hello, world!",
+        "description": "Simple task: print 'Hello, world' to console!"
+    },
+    {
+        "id": 2,
+        "name": "Simple sum",
+        "description": "Simple task: print sum of 'a' and 'b' from input to console!"
+    }
+]

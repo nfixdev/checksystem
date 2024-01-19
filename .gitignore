@@ -1,3 +1,10 @@
 node_modules/
 package-lock.json
 solve.txt
+input.txt
+output.txt
+program_out.txt
+programm_errors.txt
+result.json
+tests/
+documents/*

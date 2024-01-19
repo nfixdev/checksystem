@@ -1,3 +1,8 @@
+if(process.env.FULL_INIT_STARTUP!=1){
+    console.log("Please run from init.bat!");
+    console.log(`ENV_VAR = ${process.env.FULL_INIT_STARTUP}`);
+    throw "Error init!";
+}
 const nodemon = require("nodemon");
 
 nodemon({
